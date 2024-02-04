@@ -46,8 +46,8 @@ bot.onText(/\/get_details_sc (.+)/, (msg, match) => {
       const formattedDate = orderDetails.LAST_ORDER_DATE;
       const alproValue = orderDetails.LOC_ID.split(' ')[0];
       const formattedAppointment = orderDetails.ISI_COMMENT.replace(/;/g, ', ');
-      const message = 
-`Detail Order
+      const message =
+        `Detail Order
 
 No Order : 
 SC-${orderDetails.ORDER_ID_NEW}
@@ -81,7 +81,7 @@ Terima kasih semoga bermanfaat 🙏🏻`;
     } else {
       // Jika tidak ditemukan di tb_kpro, coba di tb_kprounsc
       const queryKprounsc = `SELECT ORDER_ID, KCONTACT, order_date, INS_ADDRESS, LOC_ID, STATUS_MESSAGE, STATUS_RESUME, PACKAGE_NAME FROM tb_kprounsc WHERE ORDER_ID = ${orderNumber}`;
-      
+
       connection.query(queryKprounsc, (errorKprounsc, resultsKprounsc) => {
         if (errorKprounsc) {
           console.error('Error querying tb_kprounsc:', errorKprounsc);
@@ -94,8 +94,8 @@ Terima kasih semoga bermanfaat 🙏🏻`;
           const orderDetailsKprounsc = resultsKprounsc[0];
           const formattedDate = orderDetailsKprounsc.order_date;
           const alproValue = orderDetailsKprounsc.LOC_ID.split(' ')[0];
-          const message = 
-`Detail Order
+          const message =
+            `Detail Order
 
 No Order : 
 SC-${orderDetailsKprounsc.ORDER_ID}
@@ -126,7 +126,7 @@ Terima kasih semoga bermanfaat 🙏🏻`;
         } else {
           // Jika tidak ditemukan di tb_kprounsc, coba di tb_kpro_tot
           const queryKproTot = `SELECT ORDER_ID, KCONTACT, order_date, INS_ADDRESS, LOC_ID, STATUS_MESSAGE, STATUS_RESUME, PACKAGE_NAME FROM tb_kpro_tot WHERE ORDER_ID = ${orderNumber}`;
-          
+
           connection.query(queryKproTot, (errorKproTot, resultsKproTot) => {
             if (errorKproTot) {
               console.error('Error querying tb_kpro_tot:', errorKproTot);
@@ -139,8 +139,8 @@ Terima kasih semoga bermanfaat 🙏🏻`;
               const orderDetailsKproTot = resultsKproTot[0];
               const formattedDate = orderDetailsKproTot.order_date;
               const alproValue = orderDetailsKproTot.LOC_ID.split(' ')[0];
-              const message = 
-`Detail Order
+              const message =
+                `Detail Order
 
 No Order : 
 SC-${orderDetailsKproTot.ORDER_ID}
